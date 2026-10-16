@@ -1,0 +1,6 @@
+{
+  "api_url": "http://127.0.0.1:1234/api/v1/chat",
+  "model": "your-local-model-identifier",
+  "max_output_tokens": 2000,
+  "timeout_seconds": 300
+}

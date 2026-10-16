@@ -1,0 +1,9 @@
+# PyTorch's final CUDA 12.8 wheel pair; later stable releases dropped cu128.
+# Exact Linux/Python 3.12 wheels avoid resolving PyPI's CUDA 13 build.
+torch @ https://download-r2.pytorch.org/whl/cu128/torch-2.11.0%2Bcu128-cp312-cp312-manylinux_2_28_x86_64.whl#sha256=d252cf975fb18c94a85336323ad425f473df56dab35a44b00399bd70c7a3b997
+torchaudio @ https://download-r2.pytorch.org/whl/cu128/torchaudio-2.11.0%2Bcu128-cp312-cp312-manylinux_2_28_x86_64.whl#sha256=78b86a17f164bdaabdcee93fdfde2587fc43b9ebf15cd61dcf730b4f8615176b
+
+pyannote.audio>=4,<5
+python-dotenv>=1,<2
+soundfile>=0.13,<1
+huggingface-hub

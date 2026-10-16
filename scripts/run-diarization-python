@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd -- "$(dirname -- "$0")/.."
+
+DIARIZATION_PYTHON="$PWD/.venv-diarize/bin/python"
+export HF_HOME="$PWD/work/huggingface"
+export HF_HUB_DISABLE_TELEMETRY=1
+export PYANNOTE_METRICS_ENABLED=0
+
+DIARIZATION_NVIDIA_LIB_DIRS="$($DIARIZATION_PYTHON - <<'PY'
+import pathlib
+import site
+
+nvidia = pathlib.Path(site.getsitepackages()[0]) / "nvidia"
+print(":".join(str(path) for path in sorted(nvidia.glob("*/lib"))))
+PY
+)"
+if [[ -n "$DIARIZATION_NVIDIA_LIB_DIRS" ]]; then
+  export LD_LIBRARY_PATH="$DIARIZATION_NVIDIA_LIB_DIRS${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+fi
+
+exec "$DIARIZATION_PYTHON" "$@"
